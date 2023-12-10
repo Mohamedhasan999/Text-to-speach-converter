@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech Converter</title>
+    <style>
+        body {
+            background-color: gray;
+        }
+        .cont {
+            margin-left: 20%;
+            margin-top: 15%;
+        }
+        textarea {
+            width: 500px;
+            overflow: hidden;
+            background-color: #FFF;
+            color: #222;
+            font-family: Courier, monospace;
+            font-weight: normal;
+            font-size: 24px;
+            resize: none;
+            line-height: 40px;
+            padding: 45px 100px 34px 100px; /* Changed padding shorthand */
+            background-image: url('https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png'), url('https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png');
+            background-repeat: repeat-y, repeat;
+            border-radius: 12px; /* Removed vendor prefixes */
+            box-shadow: 0px 2px 14px #000;
+            border: 1px solid #FFF; /* Combined border properties */
+        }
+        button {
+            margin-left: 43%;
+            margin-top: 10px;
+            font-family: "Open Sans", sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #000;
+            cursor: pointer;
+            border: 3px solid;
+            padding: 0.25em 0.5em;
+            box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+            position: relative;
+          }
+          
+          .button-54:active {
+            box-shadow: 0px 0px 0px 0px;
+            top: 5px;
+            left: 5px;
+          }
+          
+          @media (min-width: 768px) {
+            .button-54 {
+              padding: 0.25em 0.75em;
+            }
+          }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <textarea placeholder="Enter something to speak it out loud..." id="text" name="text" rows="4"></textarea>
+    </div>
+    <button type="button" id="speakbt">Speak</button>
+    
+    <script>
+        // Get the textarea and button elements
+        const textarea = document.getElementById('text');
+        const speakButton = document.getElementById('speakbt');
+
+        // Add an event listener to the button to trigger the speech
+        speakButton.addEventListener('click', () => {
+          // Create a new SpeechSynthesisUtterance object
+          const message = new SpeechSynthesisUtterance();
+          // Set the text to be spoken to the value of the textarea
+          message.text = textarea.value;
+          // Check if there is any text in the textarea
+          if (textarea.value !== '') {
+            // Use the speech synthesis API to speak the text
+            window.speechSynthesis.speak(message);
+          } else {
+            // If there is no text, alert the user
+            alert('Please enter some text to speak');
+          }
+        });
+    </script>
+</body>
+</html>
